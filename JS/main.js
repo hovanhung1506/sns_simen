@@ -22,17 +22,6 @@ window.addEventListener('DOMContentLoaded', function () {
     }, 3000);
   }
 
-  function toolTip(e) {
-    const icons = ['heart', 'shuffle', 'eye'];
-    let icon = '';
-    const cln = e.target.className;
-    icons.forEach((i) => {
-      if (cln.includes(i)) icon = i;
-    });
-    const tooltip = getParentNodeByClass(e.target, 'catalog').querySelector(`.tooltip-item-${icon}`);
-    return tooltip;
-  }
-
   function getParentNodeByClass(childrenNode, parentClass) {
     while (1) {
       if (childrenNode === document.body) return null;
@@ -139,8 +128,9 @@ window.addEventListener('DOMContentLoaded', function () {
     btnLoadMore.addEventListener('click', () => {
       const btnText = document.querySelector('.btn-text');
       const btnSpinner = document.querySelector('.btn-spinner');
+      const tabList = getParentNodeByClass(btnLoadMore, 'container').querySelectorAll('.tab-wrapper');
       let tabActive = null;
-      [...tabWrapper].forEach((tab) => {
+      [...tabList].forEach((tab) => {
         if (tab.className.includes('active')) {
           tabActive = tab;
         }

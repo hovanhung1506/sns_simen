@@ -982,7 +982,7 @@ a:hover {
 
 .tab-content {
   margin-bottom: 10px;
-  transition: all 1s linear;
+  transition: transform 1s linear;
   transition-delay: calc(var(--value) * 0.3s);
 }
 
@@ -1049,11 +1049,11 @@ a:hover {
 
 .tab-wrapper {
   display: none;
-  gap: 20px;
 }
 
 .tab-wrapper.active {
   display: flex;
+  justify-content: space-between;
   flex-wrap: wrap;
 }
 
@@ -1378,4 +1378,141 @@ a:hover {
   background-color: var(--redcolor);
   color: white;
   transition: 0.1s linear;
+}
+
+.collection {
+  width: 100%;
+  margin-bottom: 50px;
+}
+
+.collection .tab-wrapper {
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  position: relative;
+}
+
+.collection .tab-wrapper:hover .tab-icon {
+  display: block;
+}
+
+.tab-icon {
+  position: absolute;
+  top: 35%;
+  width: 30px;
+  height: 30px;
+  border: 1px solid var(--bordercolor);
+  text-align: center;
+  line-height: 30px;
+  color: #ccc;
+  cursor: pointer;
+  display: none;
+}
+
+.tab-icon:hover {
+  background-color: var(--redcolor);
+  color: white;
+}
+
+.icon-left {
+  left: 0;
+}
+
+.icon-right {
+  right: 1px;
+}
+
+.collection .tab-wrapper::-webkit-scrollbar {
+  display: none;
+}
+
+.collection .tab-content {
+  flex: 1 0 auto;
+  margin-right: 21px;
+  animation: showOpacity 0.5s ease-in;
+}
+
+@keyframes showOpacity {
+  0% {
+    transform: scale(0);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.collection .tab-content:last-child {
+  margin-right: 1px;
+}
+
+.collection-wrapper {
+  display: flex;
+  align-items: stretch;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.collection-header {
+  font-size: 20px;
+  color: var(--textcolor2);
+  font-weight: 700;
+  padding-bottom: 10px;
+  margin-bottom: 15px;
+  line-height: 1.1;
+}
+
+.collection-item {
+  width: 11.11%;
+}
+
+.collection-title {
+  padding: 10px 0 20px;
+  border: 1px solid var(--bordercolor);
+  height: 100%;
+  position: relative;
+}
+
+.collection-title:hover,
+.collection-title.active {
+  border-bottom: 1px solid var(--textcolor2);
+}
+
+.collection-title:hover::after,
+.collection-title.active::after {
+  display: block;
+}
+
+.collection-title::after {
+  position: absolute;
+  content: '';
+  top: calc(100% + 1px);
+  left: 50%;
+  transform: translateX(-50%);
+  border-left: 8px solid transparent;
+  border-right: 8px solid transparent;
+  border-top: 8px solid var(--textcolor2);
+  display: none;
+}
+
+.collection-img {
+  max-height: 70px;
+  object-fit: cover;
+  margin: 0 auto;
+}
+
+.collection-text {
+  font-size: 12px;
+  color: var(--textcolor2);
+  text-align: center;
+  padding-bottom: 10px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  line-height: 1;
+  position: absolute;
+  top: 80%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
 }
