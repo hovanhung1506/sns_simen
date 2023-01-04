@@ -504,7 +504,7 @@ a:hover {
   content: '';
   top: -11px;
   left: 100px;
-  border-bottom: 10px solid rgba(0, 0, 0, 0.2);
+  border-bottom: 10px solid rgba(0, 0, 0, 0.1);
   border-left: 10px solid transparent;
   border-right: 10px solid transparent;
 }
@@ -584,7 +584,7 @@ a:hover {
   content: '';
   top: -11px;
   left: 450px;
-  border-bottom: 10px solid rgba(0, 0, 0, 0.3);
+  border-bottom: 10px solid rgba(0, 0, 0, 0.1);
   border-left: 10px solid transparent;
   border-right: 10px solid transparent;
 }
@@ -614,7 +614,7 @@ a:hover {
   content: '';
   top: -11px;
   left: 597px;
-  border-bottom: 10px solid rgba(0, 0, 0, 0.3);
+  border-bottom: 10px solid rgba(0, 0, 0, 0.1);
   border-left: 10px solid transparent;
   border-right: 10px solid transparent;
 }
@@ -653,7 +653,7 @@ a:hover {
   content: '';
   border-left: 10px solid transparent;
   border-right: 10px solid transparent;
-  border-bottom: 10px solid rgba(0, 0, 0, 0.3);
+  border-bottom: 10px solid rgba(0, 0, 0, 0.1);
   z-index: 1;
 }
 .blog-list::after {
@@ -1054,6 +1054,7 @@ a:hover {
 
 .tab-wrapper.active {
   display: flex;
+  flex-wrap: wrap;
 }
 
 .sale-on {
@@ -1179,6 +1180,48 @@ a:hover {
   text-align: center;
   padding: 6px 0;
   cursor: pointer;
+  position: relative;
+}
+
+.box-icon > span:hover .tooltip-text,
+.box-icon > span:hover::after {
+  opacity: 1;
+  visibility: visible;
+  transition: all 0.25s linear;
+}
+
+.tooltip-text {
+  position: absolute;
+  top: -100%;
+  left: 0;
+  background-color: var(--redcolor);
+  color: white;
+  white-space: nowrap;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.25s linear;
+  pointer-events: none;
+  border-radius: 4px;
+  padding: 1px 2px;
+  font-size: 12px;
+}
+
+.box-icon > span:last-child .tooltip-text {
+  left: auto;
+  right: 0;
+}
+
+.box-icon > span::after {
+  position: absolute;
+  content: '';
+  top: -13px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 5px solid var(--redcolor);
+  opacity: 0;
+  visibility: hidden;
 }
 
 .box-icon > span:nth-child(2) {
@@ -1201,7 +1244,7 @@ a:hover {
 }
 
 .from-add-cart button:hover i {
-  animation: horizontal linear 1s alternate infinite 0.5s;
+  animation: horizontal 1s linear 0.5s infinite alternate;
 }
 
 @keyframes horizontal {
@@ -1241,6 +1284,7 @@ a:hover {
   color: var(--textcolor1);
   font-weight: 700;
   transition: all 0.25s linear;
+  position: relative;
 }
 
 .btn-loadmore:hover {
@@ -1249,148 +1293,89 @@ a:hover {
   transition: all 0.25s linear;
 }
 
-.tooltip-list {
+.btn-loadmore:hover .btn-spinner {
+  border-color: white;
+  border-right-color: transparent;
+}
+.btn-loadmore:focus {
+  outline: 0;
+}
+
+.btn-spinner {
+  display: none;
   position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 30px;
+  height: 30px;
+  border: 4px solid var(--textcolor1);
+  border-right-color: transparent;
+  border-radius: 50%;
+  animation: spinner 1s linear infinite;
+}
+
+@keyframes spinner {
+  from {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+
+  to {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+
+.new-product {
+  background-color: #f0f0f0;
   display: flex;
-  left: 0;
-  bottom: 0;
-  width: 100%;
+  padding: 30px;
+  margin-bottom: 55px;
 }
 
-.tooltip-item {
-  width: 33.333%;
-  position: relative;
-  height: 35px;
+.new-product-img {
+  display: block;
+  padding: 0px 95px 0px 45px;
 }
 
-.tooltip-item-heart::after {
-  position: absolute;
-  content: 'Add to Wishlist';
-  top: -30px;
-  left: 50%;
-  transform: translateX(-50%);
-  white-space: nowrap;
-  z-index: 1;
+.new-product-content {
+  padding: 28px;
+}
+
+.new-product-header {
+  font-size: 50px;
+  color: var(--textcolor2);
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+
+.new-product-title {
+  font-size: 14px;
+  color: var(--textcolor2);
+  text-transform: uppercase;
+  line-height: 1.3;
+  margin-bottom: 10px;
+}
+
+.new-product-desc {
+  font-size: 12px;
+  color: var(--textcolor3);
+  margin-bottom: 10px;
+}
+
+.new-product-content button {
+  font-size: 13px;
+  background-color: var(--textcolor2);
+  color: white;
+  text-transform: uppercase;
+  padding: 7px 25px;
+  font-weight: 600;
+  outline: 0;
+  border: 0;
+  transition: 0.1s linear;
+}
+
+.new-product-content button:hover {
   background-color: var(--redcolor);
   color: white;
-  font-size: 12px;
-  padding: 2px 4px;
-  border-radius: 3px;
-  opacity: 0;
-  visibility: hidden;
-  transition: all 0.2s linear;
-}
-
-.tooltip-item-heart::before {
-  position: absolute;
-  content: '';
-  top: -7px;
-  left: 50%;
-  transform: translateX(-50%);
-  border-left: 6px solid transparent;
-  border-right: 6px solid transparent;
-  border-top: 6px solid var(--redcolor);
-  z-index: 1;
-  opacity: 0;
-  visibility: hidden;
-  transition: all 0.2s linear;
-}
-
-.tooltip-item-heart.active::after {
-  opacity: 1;
-  visibility: visible;
-  transition: all 0.2s linear;
-}
-.tooltip-item-heart.active::before {
-  opacity: 1;
-  visibility: visible;
-  transition: all 0.2s linear;
-}
-
-.tooltip-item-shuffle::after {
-  position: absolute;
-  content: 'Compare';
-  top: -30px;
-  left: 50%;
-  transform: translateX(-50%);
-  white-space: nowrap;
-  z-index: 1;
-  background-color: var(--redcolor);
-  color: white;
-  font-size: 12px;
-  padding: 2px 4px;
-  border-radius: 3px;
-  opacity: 0;
-  visibility: hidden;
-  transition: all 0.2s linear;
-}
-
-.tooltip-item-shuffle::before {
-  position: absolute;
-  content: '';
-  top: -7px;
-  left: 50%;
-  transform: translateX(-50%);
-  border-left: 6px solid transparent;
-  border-right: 6px solid transparent;
-  border-top: 6px solid var(--redcolor);
-  z-index: 1;
-  opacity: 0;
-  visibility: hidden;
-  transition: all 0.2s linear;
-}
-
-.tooltip-item-shuffle.active::after {
-  opacity: 1;
-  visibility: visible;
-  transition: all 0.2s linear;
-}
-.tooltip-item-shuffle.active::before {
-  opacity: 1;
-  visibility: visible;
-  transition: all 0.2s linear;
-}
-
-.tooltip-item-eye::after {
-  position: absolute;
-  content: 'Quick View';
-  top: -30px;
-  left: 50%;
-  transform: translateX(-50%);
-  white-space: nowrap;
-  z-index: 1;
-  background-color: var(--redcolor);
-  color: white;
-  font-size: 12px;
-  padding: 2px 4px;
-  border-radius: 3px;
-  opacity: 0;
-  visibility: hidden;
-  transition: all 0.2s linear;
-}
-
-.tooltip-item-eye::before {
-  position: absolute;
-  content: '';
-  top: -7px;
-  left: 50%;
-  transform: translateX(-50%);
-  border-left: 6px solid transparent;
-  border-right: 6px solid transparent;
-  border-top: 6px solid var(--redcolor);
-  z-index: 1;
-  opacity: 0;
-  visibility: hidden;
-  transition: all 0.2s linear;
-}
-
-.tooltip-item-eye.active::after {
-  opacity: 1;
-  visibility: visible;
-  transition: all 0.2s linear;
-}
-.tooltip-item-eye.active::before {
-  opacity: 1;
-  visibility: visible;
-  transition: all 0.2s linear;
+  transition: 0.1s linear;
 }
