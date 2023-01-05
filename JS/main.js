@@ -1,11 +1,17 @@
-window.addEventListener('DOMContentLoaded', function () {
+window.addEventListener('load', function () {
   const sliderMain = document.querySelector('.slider-main');
   const sliderItems = document.querySelectorAll('.slider-item');
   const dotItem = document.querySelectorAll('.dot-item');
   const tabItem = document.querySelectorAll('.tab-item');
-  const tabWrapper = document.querySelectorAll('.tab-wrapper');
   const btnLoadMore = document.querySelector('.btn-loadmore');
-  let i = 0;
+  const btnPrev = document.querySelector('.btn-prev');
+  const btnNext = document.querySelector('.btn-next');
+
+  const collectionItem = document.querySelectorAll('.collection-item');
+  let i = 0,
+    postionX = 0,
+    index = 0;
+
   function sliderImage() {
     setInterval(() => {
       if (i == sliderItems.length - 1) {
@@ -25,8 +31,12 @@ window.addEventListener('DOMContentLoaded', function () {
   function getParentNodeByClass(childrenNode, parentClass) {
     while (1) {
       if (childrenNode === document.body) return null;
-      if (childrenNode.className.includes(parentClass)) return childrenNode;
-      else childrenNode = childrenNode.parentNode;
+      if (childrenNode.className.includes(parentClass)) {
+        let className = childrenNode.className.split(' ').filter((name) => name.includes(parentClass));
+        let isTrue = className.some((name) => name === parentClass);
+        if (isTrue) return childrenNode;
+        else childrenNode = childrenNode.parentNode;
+      } else childrenNode = childrenNode.parentNode;
     }
   }
 
@@ -37,6 +47,7 @@ window.addEventListener('DOMContentLoaded', function () {
         tab.classList.add('active');
 
         const currentTab = tab.dataset.tab;
+        const tabWrapper = getParentNodeByClass(tab, 'container').querySelectorAll('.tab-wrapper');
         [...tabWrapper].forEach((tabw) => {
           tabw.classList.remove('active');
           if (tabw.dataset.tab === currentTab) {
@@ -128,7 +139,7 @@ window.addEventListener('DOMContentLoaded', function () {
     btnLoadMore.addEventListener('click', () => {
       const btnText = document.querySelector('.btn-text');
       const btnSpinner = document.querySelector('.btn-spinner');
-      const tabList = getParentNodeByClass(btnLoadMore, 'container').querySelectorAll('.tab-wrapper');
+      const tabList = getParentNodeByClass(btnLoadMore, 'container')?.querySelectorAll('.tab-wrapper');
       let tabActive = null;
       [...tabList].forEach((tab) => {
         if (tab.className.includes('active')) {
@@ -157,7 +168,91 @@ window.addEventListener('DOMContentLoaded', function () {
     });
   }
 
+  function handleButtonSlider() {
+    btnNext.addEventListener('click', function () {
+      handleChangeSlide(1);
+    });
+
+    btnPrev.addEventListener('click', function () {
+      handleChangeSlide(-1);
+    });
+  }
+
+  function handleChangeSlide(dicection = 0) {
+    const collectionSlide = document.querySelectorAll('.collection .tab-wrapper.active .tab-content');
+    const collectionSlideWrapper = document.querySelector('.collection .tab-wrapper.active');
+    let sliderItemWidth = collectionSlide[0].offsetWidth;
+    let style = getComputedStyle(collectionSlide[0]);
+    let marginRight = +style.marginRight.slice(0, style.marginRight.length - 2);
+    // console.log(!!collectionSlideWrapper.style.transform);
+    if (dicection === 1) {
+      if (index >= collectionSlide.length - 5) return;
+      postionX -= sliderItemWidth + marginRight;
+      index++;
+    }
+    if (dicection === -1) {
+      if (index <= 0) return;
+      postionX += sliderItemWidth + marginRight;
+      index--;
+    }
+    collectionSlideWrapper.style = `transform: translateX(${postionX}px)`;
+  }
+
+  function handleCollectionItem() {
+    [...collectionItem].forEach((collection) => {
+      collection.addEventListener('click', function () {
+        const collectionSlideWrapper = document.querySelector('.collection .tab-wrapper.active');
+        postionX = index = 0;
+        collectionSlideWrapper.style = `transform: translateX(${postionX}px)`;
+        [...collectionItem].forEach((item) => {
+          item.classList.remove('active');
+        });
+        collection.classList.add('active');
+        const currentTab = collection.dataset.tab;
+        const tabw = getParentNodeByClass(collection, 'collection')?.querySelectorAll('.tab-wrapper');
+        [...tabw].forEach((tab) => {
+          if (tab.dataset.tab === currentTab) tab.classList.add('active');
+          else tab.classList.remove('active');
+        });
+      });
+    });
+  }
+
+  function debounceFn(func, wait, immediate) {
+    var timeout;
+    return function () {
+      var context = this,
+        args = arguments;
+      var later = function () {
+        timeout = null;
+        if (!immediate) func.apply(context, args);
+      };
+      var callNow = immediate && !timeout;
+      clearTimeout(timeout);
+      timeout = setTimeout(later, wait);
+      if (callNow) func.apply(context, args);
+    };
+  }
+
+  function backtop() {
+    const btnBackTop = document.querySelector('.back-to-top');
+    window.addEventListener(
+      'scroll',
+      debounceFn(() => {
+        if (window.scrollY >= 300) btnBackTop.style.display = 'flex';
+        else btnBackTop.style.display = 'none';
+      }, 200)
+    );
+    btnBackTop.addEventListener('click', function () {
+      document.documentElement.scrollTop = 0;
+    });
+  }
+
+  backtop();
+
   sliderImage();
   changeTab();
   loadMore();
+  handleCollectionItem();
+  handleButtonSlider();
 });
