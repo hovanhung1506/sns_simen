@@ -6,13 +6,13 @@ window.addEventListener('load', function () {
   const btnLoadMore = document.querySelector('.btn-loadmore');
   const btnPrev = document.querySelector('.btn-prev');
   const btnNext = document.querySelector('.btn-next');
+  const btnSubMenuMobiles = document.querySelectorAll('.btn-sub-menu-mobile');
 
-  const collectionItem = document.querySelectorAll('.collection-item');
-  let i = 0,
-    postionX = 0,
+  let postionX = 0,
     index = 0;
 
   function sliderImage() {
+    let i = 0;
     setInterval(() => {
       if (i == sliderItems.length - 1) {
         i = 0;
@@ -29,6 +29,7 @@ window.addEventListener('load', function () {
   }
 
   function getParentNodeByClass(childrenNode, parentClass) {
+    childrenNode = childrenNode.parentNode;
     while (1) {
       if (childrenNode === document.body) return null;
       if (childrenNode.className.includes(parentClass)) {
@@ -52,16 +53,6 @@ window.addEventListener('load', function () {
           tabw.classList.remove('active');
           if (tabw.dataset.tab === currentTab) {
             tabw.classList.add('active');
-            const tabContent = tabw.querySelectorAll('.tab-content');
-            [...tabContent].forEach((item) => {
-              item.style.transform = 'scale(0)';
-            });
-
-            setTimeout(() => {
-              [...tabContent].forEach((item) => {
-                item.style.transform = 'scale(1)';
-              });
-            }, 0);
           }
         });
       });
@@ -154,16 +145,6 @@ window.addEventListener('load', function () {
         for (let i = 1; i <= 5; i++) {
           tabActive.insertAdjacentHTML('beforeend', template(i));
         }
-        const tabContents = tabActive.querySelectorAll('.tab-content');
-        let startIndex = tabContents.length % 5 == 0 ? tabContents.length - 5 : tabContents.length % 5;
-        for (let i = startIndex; i < tabContents.length; i++) {
-          tabContents[i].style.transform = 'scale(0)';
-        }
-        setTimeout(() => {
-          for (let i = startIndex; i < tabContents.length; i++) {
-            tabContents[i].style.transform = 'scale(1)';
-          }
-        }, 0);
       }, 2000);
     });
   }
@@ -199,6 +180,7 @@ window.addEventListener('load', function () {
   }
 
   function handleCollectionItem() {
+    const collectionItem = document.querySelectorAll('.collection-item');
     [...collectionItem].forEach((collection) => {
       collection.addEventListener('click', function () {
         const collectionSlideWrapper = document.querySelector('.collection .tab-wrapper.active');
@@ -236,9 +218,16 @@ window.addEventListener('load', function () {
 
   function backtop() {
     const btnBackTop = document.querySelector('.back-to-top');
+
     window.addEventListener(
       'scroll',
       debounceFn(() => {
+        // if (window.innerWidth >= 1025) {
+        //   if (window.scrollY >= 300) btnBackTop.style.display = 'flex';
+        //   else btnBackTop.style.display = 'none';
+        // } else {
+        //   btnBackTop.style.display = 'none';
+        // }
         if (window.scrollY >= 300) btnBackTop.style.display = 'flex';
         else btnBackTop.style.display = 'none';
       }, 200)
@@ -248,11 +237,136 @@ window.addEventListener('load', function () {
     });
   }
 
-  backtop();
+  function handleOverlay() {
+    const btnBars = document.querySelector('.icon-bars');
+    btnBars.addEventListener('click', function () {
+      const overlay = this.parentNode.querySelector('.overlay');
+      overlay.classList.toggle('active');
+    });
+  }
 
+  function handleClickSubmenuMobile() {
+    let levels = [];
+    btnSubMenuMobiles.forEach((item) => {
+      let level = item.dataset.level;
+      if (!levels.includes(level)) {
+        levels.push(level);
+      }
+    });
+    for (let i = 0; i < levels.length; i++) {
+      const btnLevels = document.querySelectorAll(`.menu-mobile-list [data-level="${levels[i]}"]`);
+      btnLevels.forEach((btn, j) => {
+        btn.addEventListener('click', function () {
+          if (+levels[i] === 1) {
+            btnLevels.forEach((item, k) => {
+              if (item.classList.contains('fa-circle-minus') && k !== j) {
+                item.classList.remove('fa-circle-minus');
+                item.classList.add('fa-circle-plus');
+                const submenuList = getParentNodeByClass(item, 'menu-mobile-item').querySelector(
+                  '.sub-menu-mobile-list'
+                );
+                submenuList.style.height = `0px`;
+              }
+            });
+            btn.classList.toggle('fa-circle-minus');
+            btn.classList.toggle('fa-circle-plus');
+          }
+
+          const submenuList = getParentNodeByClass(btn, 'menu-mobile-item').querySelector(
+            '.sub-menu-mobile-list'
+          );
+          if (+levels[i] > 1) {
+            let change = false;
+            btnLevels.forEach((item, k) => {
+              if (item.classList.contains('fa-circle-minus') && k !== j) {
+                change = true;
+                item.classList.remove('fa-circle-minus');
+                item.classList.add('fa-circle-plus');
+                const submenuL = getParentNodeByClass(item, 'sub-menu-mobile-item').querySelector(
+                  '.sub-menu-mobile-list'
+                );
+                submenuL.style.height = `0px`;
+              }
+            });
+            btn.classList.toggle('fa-circle-minus');
+            btn.classList.toggle('fa-circle-plus');
+            const sub = getParentNodeByClass(btn, 'sub-menu-mobile-item').querySelector(
+              '.sub-menu-mobile-list'
+            );
+            if (btn.classList.contains('fa-circle-minus')) {
+              let submenuListHeight = submenuList.offsetHeight;
+              if (change) {
+                let tt = 0;
+                const li = getParentNodeByClass(btn, 'sub-menu-mobile-list').children;
+                [...li].forEach((el) => {
+                  if (!el.querySelector('.sub-menu-mobile-list').offsetHeight) {
+                    tt += +el.offsetHeight;
+                  }
+                  if (el.querySelector('.fa-circle-minus')) {
+                    tt += Number(el.scrollHeight + el.querySelector('.sub-menu-mobile-list').scrollHeight);
+                  }
+                });
+                submenuList.style.height = `${++tt}px`;
+              } else submenuList.style.height = `${submenuListHeight + sub.scrollHeight}px`;
+              sub.style.height = `${sub.scrollHeight}px`;
+            } else {
+              submenuList.style.height = `${submenuList.scrollHeight - sub.scrollHeight}px`;
+              sub.style.height = '0px';
+            }
+          } else {
+            if (btn.classList.contains('fa-circle-minus'))
+              submenuList.style.height = `${++submenuList.scrollHeight}px`;
+            else submenuList.style.height = `0px`;
+          }
+        });
+      });
+    }
+  }
+
+  function handleSuggestCollection() {
+    const btnBars = document.querySelector('.mobile-md .icon-bars');
+    btnBars.addEventListener('click', function () {
+      const list = btnBars.nextElementSibling;
+      list.classList.toggle('active');
+    });
+    const collectionItem = document.querySelectorAll('.collection-item-md');
+    collectionItem.forEach((item) => {
+      item.addEventListener('click', function (e) {
+        if (e.target.classList.contains('active')) return;
+        collectionItem.forEach((el) => el.classList.remove('active'));
+        item.classList.add('active');
+        const tabActive = item.dataset.tab;
+        const tabw = getParentNodeByClass(item, 'collection').querySelectorAll('.tab-wrapper');
+        tabw.forEach((tab) => {
+          if (tab.dataset.tab === tabActive) tab.classList.add('active');
+          else tab.classList.remove('active');
+        });
+      });
+    });
+  }
+
+  handleSuggestCollection();
+  handleClickSubmenuMobile();
+  backtop();
   sliderImage();
   changeTab();
   loadMore();
   handleCollectionItem();
   handleButtonSlider();
+  handleOverlay();
+
+  document.body.addEventListener('click', function (e) {
+    const target = e.target;
+    if (target.classList.contains('overlay')) {
+      const overlay = document.querySelector('.overlay');
+      overlay.classList.toggle('active');
+    }
+    if (
+      !target.classList.contains('icon-bars') &&
+      !target.parentNode.classList.contains('dropdown-collection-list')
+    ) {
+      const list = document.querySelector('.dropdown-collection-list');
+      list.classList.remove('active');
+    }
+  });
 });

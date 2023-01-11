@@ -44,10 +44,6 @@ a:hover {
   width: 100%;
 }
 
-.container {
-  max-width: 1200px;
-}
-
 .headertop {
   background-color: #222222;
 }
@@ -118,6 +114,10 @@ a:hover {
   width: 1px;
   height: 15px;
   background-color: #88888833;
+  -webkit-transform: translateY(-50%);
+  -moz-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  -o-transform: translateY(-50%);
 }
 
 .tongle img,
@@ -149,6 +149,10 @@ a:hover {
 .nav_item:hover span {
   color: var(--redcolor);
   transition: all 0.25s linear;
+  -webkit-transition: all 0.25s linear;
+  -moz-transition: all 0.25s linear;
+  -ms-transition: all 0.25s linear;
+  -o-transition: all 0.25s linear;
 }
 
 .language-switcher:hover .list-lang,
@@ -160,6 +164,7 @@ a:hover {
 .language-switcher:hover .list-lang li,
 .currency-switcher:hover .list-currency li {
   animation: fadeIn 0.3s linear;
+  -webkit-animation: fadeIn 0.3s linear;
 }
 
 .list-lang li:hover,
@@ -203,8 +208,7 @@ a:hover {
 
 .widget-text p {
   font-size: 12px;
-  color: var(--textcolor);
-  color: #666;
+  color: var(--textcolor3);
 }
 
 .widget-icon {
@@ -217,14 +221,19 @@ a:hover {
   margin-right: 10px;
   font-size: 15px;
   overflow: hidden;
+  flex-shrink: 0;
 }
 
 .widget-icon i {
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
   color: #666;
+  transform: translate(-50%, -50%);
+  -webkit-transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  -o-transform: translate(-50%, -50%);
 }
 
 .widget-icon::after {
@@ -237,6 +246,10 @@ a:hover {
   background-color: var(--redcolor);
   z-index: -1;
   transition: all 0.3s ease;
+  -webkit-transition: all 0.3s ease;
+  -moz-transition: all 0.3s ease;
+  -ms-transition: all 0.3s ease;
+  -o-transition: all 0.3s ease;
 }
 
 .header-right-widget:hover .widget-icon::after {
@@ -327,7 +340,7 @@ a:hover {
   text-transform: uppercase;
   font-weight: 700;
   font-size: 13px;
-  padding: 1.8rem 2rem 1.8rem;
+  padding: 18px 30px 18px 0;
   display: block;
 }
 
@@ -357,6 +370,7 @@ a:hover {
   visibility: visible;
   z-index: 1;
   animation: fadeIn 0.3s linear;
+  -webkit-animation: fadeIn 0.3s linear;
 }
 
 .search {
@@ -384,8 +398,12 @@ a:hover {
   left: 100%;
   width: 1px;
   height: 35%;
-  transform: translateY(-50%);
   background-color: rgba(0, 0, 0, 0.2);
+  transform: translateY(-50%);
+  -webkit-transform: translateY(-50%);
+  -moz-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  -o-transform: translateY(-50%);
 }
 
 .cart {
@@ -415,6 +433,9 @@ a:hover {
   opacity: 1;
   visibility: visible;
   animation: fadeIn 0.3s linear;
+  -webkit-animation: fadeIn 0.3s linear;
+  -o-animation: fadeIn 0.3s linear;
+  -moz-animation: fadeIn 0.3s linear;
 }
 
 .card-list-wrap::after {
@@ -483,10 +504,14 @@ a:hover {
   content: '';
   left: 0;
   top: 50%;
-  transform: translateY(-50%);
   width: 1px;
   height: 45%;
   background-color: rgba(0, 0, 0, 0.2);
+  transform: translateY(-50%);
+  -webkit-transform: translateY(-50%);
+  -moz-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  -o-transform: translateY(-50%);
 }
 
 .furnitures::after {
@@ -791,6 +816,7 @@ a:hover {
   overflow-x: auto;
   display: flex;
   scroll-behavior: smooth;
+  height: 100%;
 }
 
 .slider-main::-webkit-scrollbar {
@@ -822,8 +848,12 @@ a:hover {
   position: absolute;
   right: 15px;
   top: 15px;
-  transform: scale(0, 1);
   z-index: 2;
+  transform: scale(0, 1);
+  -webkit-transform: scale(0, 1);
+  -moz-transform: scale(0, 1);
+  -ms-transform: scale(0, 1);
+  -o-transform: scale(0, 1);
 }
 
 .banner a:nth-child(2)::after {
@@ -835,8 +865,12 @@ a:hover {
   position: absolute;
   right: 15px;
   top: 15px;
-  transform: scale(1, 0);
   z-index: 2;
+  transform: scale(1, 0);
+  -webkit-transform: scale(1, 0);
+  -moz-transform: scale(1, 0);
+  -ms-transform: scale(1, 0);
+  -o-transform: scale(1, 0);
 }
 
 .banner a:nth-child(2):hover span::after {
@@ -851,16 +885,28 @@ a:hover {
 
 .banner a:nth-child(2):hover::before {
   transform: scale(1);
-  -webkit-transition: all 0.3s ease-out 0s;
-  -o-transition: all 0.3s ease-out 0s;
+  -webkit-transform: scale(1);
+  -moz-transform: scale(1);
+  -ms-transform: scale(1);
+  -o-transform: scale(1);
   transition: all 0.3s ease-out 0s;
+  -webkit-transition: all 0.3s ease-out 0s;
+  -moz-transition: all 0.3s ease-out 0s;
+  -ms-transition: all 0.3s ease-out 0s;
+  -o-transition: all 0.3s ease-out 0s;
 }
 
 .banner a:nth-child(2):hover::after {
   transform: scale(1);
-  -webkit-transition: all 0.3s ease-out 0s;
-  -o-transition: all 0.3s ease-out 0s;
+  -webkit-transform: scale(1);
+  -moz-transform: scale(1);
+  -ms-transform: scale(1);
+  -o-transform: scale(1);
   transition: all 0.3s ease-out 0s;
+  -webkit-transition: all 0.3s ease-out 0s;
+  -moz-transition: all 0.3s ease-out 0s;
+  -ms-transition: all 0.3s ease-out 0s;
+  -o-transition: all 0.3s ease-out 0s;
 }
 
 .banner a:nth-child(3) {
@@ -875,9 +921,11 @@ a:hover {
   bottom: 0;
   left: 100%;
   right: 0;
-  -webkit-transition: all 0.3s ease-out 0s;
-  -o-transition: all 0.3s ease-out 0s;
   transition: all 0.3s ease-out 0s;
+  -webkit-transition: all 0.3s ease-out 0s;
+  -moz-transition: all 0.3s ease-out 0s;
+  -ms-transition: all 0.3s ease-out 0s;
+  -o-transition: all 0.3s ease-out 0s;
 }
 
 .banner a:nth-child(3)::before {
@@ -887,9 +935,11 @@ a:hover {
   bottom: 0;
   left: 0;
   right: 100%;
-  -webkit-transition: all 0.3s ease-out 0s;
-  -o-transition: all 0.3s ease-out 0s;
   transition: all 0.3s ease-out 0s;
+  -webkit-transition: all 0.3s ease-out 0s;
+  -moz-transition: all 0.3s ease-out 0s;
+  -ms-transition: all 0.3s ease-out 0s;
+  -o-transition: all 0.3s ease-out 0s;
 }
 
 .banner a:nth-child(3):hover::after {
@@ -944,8 +994,12 @@ a:hover {
   position: absolute;
   top: 95%;
   left: 50%;
-  transform: translateX(-50%);
   display: flex;
+  transform: translateX(-50%);
+  -webkit-transform: translateX(-50%);
+  -moz-transform: translateX(-50%);
+  -ms-transform: translateX(-50%);
+  -o-transform: translateX(-50%);
 }
 
 .slider-dot li {
@@ -976,14 +1030,33 @@ a:hover {
   left: 0;
   width: 100%;
   height: 1px;
-  transform: translateY(-50%);
   background-color: var(--bordercolor);
+  transform: translateY(-50%);
+  -webkit-transform: translateY(-50%);
+  -moz-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  -o-transform: translateY(-50%);
 }
 
 .tab-content {
   margin-bottom: 10px;
   transition: transform 1s linear;
-  transition-delay: calc(var(--value) * 0.3s);
+  transform: scale(0);
+  animation: showScale 1s linear forwards;
+  -webkit-animation: showScale 1s linear forwards;
+  -moz-animation: showScale 1s linear forwards;
+  -o-animation: showScale 1s linear forwards;
+  animation-delay: calc(var(--value) * 0.3s);
+  -webkit-animation-delay: calc(var(--value) * 0.3s);
+  -moz-animation-delay: calc(var(--value) * 0.3s);
+  -o-animation-delay: calc(var(--value) * 0.3s);
+  width: calc(20% - 20px);
+}
+
+@keyframes showScale {
+  to {
+    transform: scale(1);
+  }
 }
 
 .tab-item {
@@ -1010,10 +1083,14 @@ a:hover {
   content: '';
   top: 100%;
   left: 50%;
-  transform: translateX(-50%);
   border-top: 6px solid black;
   border-left: 6px solid transparent;
   border-right: 6px solid transparent;
+  transform: translateX(-50%);
+  -webkit-transform: translateX(-50%);
+  -moz-transform: translateX(-50%);
+  -ms-transform: translateX(-50%);
+  -o-transform: translateX(-50%);
 }
 
 .tab-item:first-child {
@@ -1030,10 +1107,14 @@ a:hover {
   content: '';
   top: 50%;
   right: 1%;
-  transform: translateY(-50%);
   height: 50%;
   background-color: var(--bordercolor);
   width: 1px;
+  transform: translateY(-50%);
+  -webkit-transform: translateY(-50%);
+  -moz-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  -o-transform: translateY(-50%);
 }
 
 .tab-item:nth-child(2)::after {
@@ -1041,10 +1122,14 @@ a:hover {
   content: '';
   top: 50%;
   right: 1%;
-  transform: translateY(-50%);
   height: 50%;
   background-color: var(--bordercolor);
   width: 1px;
+  transform: translateY(-50%);
+  -webkit-transform: translateY(-50%);
+  -moz-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  -o-transform: translateY(-50%);
 }
 
 .tab-wrapper {
@@ -1066,11 +1151,15 @@ a:hover {
   position: absolute;
   top: 7px;
   right: -14px;
-  transform: rotate(45deg);
   background-color: var(--redcolor);
   color: white;
   padding: 0px 17px;
   z-index: 1;
+  transform: rotate(45deg);
+  -webkit-transform: rotate(45deg);
+  -moz-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  -o-transform: rotate(45deg);
 }
 
 .catalog {
@@ -1117,6 +1206,10 @@ a:hover {
   height: 1px;
   background-color: var(--textcolor3);
   transform: rotate(-6deg);
+  -webkit-transform: rotate(-6deg);
+  -moz-transform: rotate(-6deg);
+  -ms-transform: rotate(-6deg);
+  -o-transform: rotate(-6deg);
 }
 
 .current-price {
@@ -1160,19 +1253,35 @@ a:hover {
   color: white;
   background-color: var(--textcolor2);
   padding: 8px 0;
-  transform: translateX(101%);
   font-size: 12px;
   font-weight: 600;
+  transform: translateX(101%);
+  -webkit-transform: translateX(101%);
+  -moz-transform: translateX(101%);
+  -ms-transform: translateX(101%);
+  -o-transform: translateX(101%);
   transition: transform 0.5s ease-in-out;
+  -webkit-transition: transform 0.5s ease-in-out;
+  -moz-transition: transform 0.5s ease-in-out;
+  -ms-transition: transform 0.5s ease-in-out;
+  -o-transition: transform 0.5s ease-in-out;
 }
 
 .box-icon {
   font-size: 14px;
   width: 100%;
   display: flex;
-  transform: translateX(-101%);
   justify-content: space-between;
+  transform: translateX(-101%);
+  -webkit-transform: translateX(-101%);
+  -moz-transform: translateX(-101%);
+  -ms-transform: translateX(-101%);
+  -o-transform: translateX(-101%);
   transition: transform 0.5s ease-in-out;
+  -webkit-transition: transform 0.5s ease-in-out;
+  -moz-transition: transform 0.5s ease-in-out;
+  -ms-transition: transform 0.5s ease-in-out;
+  -o-transition: transform 0.5s ease-in-out;
 }
 
 .box-icon > span {
@@ -1216,12 +1325,16 @@ a:hover {
   content: '';
   top: -13px;
   left: 50%;
-  transform: translateX(-50%);
   border-left: 5px solid transparent;
   border-right: 5px solid transparent;
   border-top: 5px solid var(--redcolor);
   opacity: 0;
   visibility: hidden;
+  transform: translateX(-50%);
+  -webkit-transform: translateX(-50%);
+  -moz-transform: translateX(-50%);
+  -ms-transform: translateX(-50%);
+  -o-transform: translateX(-50%);
 }
 
 .box-icon > span:nth-child(2) {
@@ -1232,7 +1345,15 @@ a:hover {
 .catalog:hover .from-add-cart button,
 .catalog:hover .box-icon {
   transform: translateX(0);
+  -webkit-transform: translateX(0);
+  -moz-transform: translateX(0);
+  -ms-transform: translateX(0);
+  -o-transform: translateX(0);
   transition: transform 0.5s ease-in-out;
+  -webkit-transition: transform 0.5s ease-in-out;
+  -moz-transition: transform 0.5s ease-in-out;
+  -ms-transition: transform 0.5s ease-in-out;
+  -o-transition: transform 0.5s ease-in-out;
 }
 
 .box-icon span:hover i {
@@ -1245,6 +1366,7 @@ a:hover {
 
 .from-add-cart button:hover i {
   animation: horizontal 1s linear 0.5s infinite alternate;
+  -webkit-animation: horizontal 1s linear 0.5s infinite alternate;
 }
 
 @keyframes horizontal {
@@ -1306,13 +1428,18 @@ a:hover {
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
   width: 30px;
   height: 30px;
   border: 4px solid var(--textcolor1);
   border-right-color: transparent;
   border-radius: 50%;
   animation: spinner 1s linear infinite;
+  -webkit-animation: spinner 1s linear infinite;
+  transform: translate(-50%, -50%);
+  -webkit-transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  -o-transform: translate(-50%, -50%);
 }
 
 @keyframes spinner {
@@ -1390,7 +1517,7 @@ a:hover {
   transition: transform 0.5s linear;
 }
 
-.collection > div:hover .tab-icon {
+.slide-collection:hover .tab-icon {
   display: block;
 }
 
@@ -1409,7 +1536,6 @@ a:hover {
   line-height: 30px;
   color: #ccc;
   cursor: pointer;
-  display: none;
   background-color: white;
 }
 
@@ -1429,16 +1555,6 @@ a:hover {
 .collection .tab-content {
   flex: 1 0 auto;
   margin-right: 21px;
-  animation: showOpacity 1s ease-in;
-}
-
-@keyframes showOpacity {
-  0% {
-    transform: scale(0);
-  }
-  100% {
-    transform: scale(1);
-  }
 }
 
 .collection .tab-content:last-child {
@@ -1492,11 +1608,15 @@ a:hover {
   content: '';
   top: calc(100% + 1px);
   left: 50%;
-  transform: translateX(-50%);
   border-left: 8px solid transparent;
   border-right: 8px solid transparent;
   border-top: 8px solid var(--textcolor2);
   display: none;
+  transform: translateX(-50%);
+  -webkit-transform: translateX(-50%);
+  -moz-transform: translateX(-50%);
+  -ms-transform: translateX(-50%);
+  -o-transform: translateX(-50%);
 }
 
 .collection-img {
@@ -1519,29 +1639,30 @@ a:hover {
   position: absolute;
   top: 80%;
   left: 50%;
-  transform: translateX(-50%);
   width: 100%;
+  transform: translateX(-50%);
+  -webkit-transform: translateX(-50%);
+  -moz-transform: translateX(-50%);
+  -ms-transform: translateX(-50%);
+  -o-transform: translateX(-50%);
 }
 
 .banner-wapper {
-  display: flex;
-  justify-content: space-between;
+  /* display: flex;
+  justify-content: space-between; */
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
   margin-bottom: 52px;
+  gap: 30px;
 }
 
 .banner-wapper img {
-  height: 300px;
+  height: 100%;
   object-fit: cover;
-  margin: 0 15px;
-  display: block;
 }
 
 .banner-wapper img:first-child {
-  margin-left: 0px;
-}
-
-.banner-wapper img:last-child {
-  margin-right: 0px;
+  grid-column: 1/3;
 }
 
 .most-view-header-text,
@@ -1571,10 +1692,14 @@ a:hover {
   content: '';
   top: 50%;
   left: 0;
-  transform: translateY(-50%);
   height: 1px;
   width: 100%;
   background-color: var(--bordercolor);
+  transform: translateY(-50%);
+  -webkit-transform: translateY(-50%);
+  -moz-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  -o-transform: translateY(-50%);
 }
 
 .most-view-main {
@@ -1628,22 +1753,21 @@ a:hover {
 }
 
 .latest-post-wrapper {
-  display: flex;
-  justify-content: space-between;
-  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
   margin-bottom: 50px;
+  gap: 30px;
 }
 
 .latest-post-item img {
   margin-bottom: 20px;
   object-fit: cover;
-  width: 370px;
-  height: 190px;
+  /* width: 370px;
+  height: 190px; */
 }
 
 .latest-post-content {
   display: flex;
-  width: 370px;
 }
 
 .latest-post-date {
@@ -1738,7 +1862,7 @@ footer {
 }
 
 .footer-item {
-  width: 25%;
+  width: 20%;
   font-size: 12px;
   color: var(--textcolor3);
 }
@@ -1769,9 +1893,13 @@ footer h4 {
   color: var(--redcolor);
 }
 
-.footer-item li {
-  padding: 0 10px 10px 0;
+.footer-item:not(:last-child) li {
+  padding-right: 10px;
   transition: all 0.2s linear;
+}
+
+.footer-item li {
+  padding-bottom: 10px;
 }
 
 .footer-item li a {
@@ -1780,8 +1908,16 @@ footer h4 {
 
 .footer-item li:hover a {
   color: var(--redcolor);
-  transform: translateX(10px);
   transition: all 0.2s linear;
+  transform: translateX(10px);
+  -webkit-transform: translateX(10px);
+  -moz-transform: translateX(10px);
+  -ms-transform: translateX(10px);
+  -o-transform: translateX(10px);
+}
+
+.footer-item a[href^='mailto']:hover {
+  color: var(--redcolor);
 }
 
 .icon-footer {
